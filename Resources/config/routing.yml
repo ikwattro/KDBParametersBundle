@@ -1,0 +1,3 @@
+KDBParametersBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: KDBParametersBundle:Default:index }

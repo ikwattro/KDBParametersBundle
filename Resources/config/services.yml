@@ -1,0 +1,7 @@
+parameters:
+#    kdb_parameters.example.class: KDB\ParametersBundle\Example
+
+services:
+#    kdb_parameters.example:
+#        class: %kdb_parameters.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
