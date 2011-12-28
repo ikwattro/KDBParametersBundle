@@ -4,13 +4,12 @@ namespace KDB\ParametersBundle\Util;
 
 class ParametersManipulator
 {
-    protected $_activate;
+    protected $class;
     
-    public $bag = array();
     
-    public function __construct($activate = 'default')
+    public function __construct($class)
     {
-        $this->activate = $activate;
+        $this->class = $class;
     }
     
     public function toUpper($var)
@@ -18,12 +17,6 @@ class ParametersManipulator
         return strtoupper($var);
     }
     
-    public function addParam($param, $value)
-    {
-        $this->bag[$param] = $value;
-                
-        return;
-    }
     
     public function getServiceName()
     {

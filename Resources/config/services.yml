@@ -2,10 +2,12 @@ parameters:
   kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
   kdb_parameters.activate: kdb_default
   kdb_parameters.bag: []
+  kdb_parameters.class: hello
 
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator.class%
+        arguments: [%kdb_parameters.class%]
     
     kparams:
       alias: kdb_parameters

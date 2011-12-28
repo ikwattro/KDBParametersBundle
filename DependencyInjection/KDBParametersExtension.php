@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -35,6 +36,12 @@ class KDBParametersExtension extends Extension
         {
         $container->setParameter('kdb_parameters.activate', $config['activate']);
         }
+        
+        if(!isset($config['class']))
+        {
+            throw new \InvalidArgumentException('The "class" parameter in the "kdb_parameters" config must be configured');
+        }
+        $container->setParameter('kdb_parameters.class', $config['class']);
     }
     
     public function getAlias()
