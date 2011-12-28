@@ -6,3 +6,6 @@ parameters:
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator.class%
+    
+    kparams:
+      alias: kdb_parameters

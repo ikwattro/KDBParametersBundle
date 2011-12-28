@@ -25,9 +25,9 @@ class ParametersManipulator
         return;
     }
     
-    public function getBag()
+    public function getServiceName()
     {
-        return $this->bag;
+        return 'KDBParametersBundle provided to you by Kwattro';
     }
 }
 ?>
