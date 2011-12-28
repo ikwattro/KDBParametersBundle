@@ -1,0 +1,11 @@
+## YAML Template.
+KDB\ParametersBundle\Model\Parameter:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: { fields: name, message: kdb_parameters.name.already_used }
+  
+  properties:
+    name:
+      - NotBlank: { message: kdb_parameters.validation.name.notblank }
+    
+    value:
+      - NotBlank: ~

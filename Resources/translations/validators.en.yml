@@ -1,0 +1,4 @@
+## YAML Template.
+kdb_parameters:
+  name:
+    already_used: The parameter name is already used
