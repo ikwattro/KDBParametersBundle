@@ -1,6 +1,8 @@
 parameters:
   kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
   kdb_parameters.activate: kdb_default
+  kdb_parameters.form.theme: "KDBParametersBundle::form.html.twig"
+  kdb_parameters.manager.class: KDB\ParametersBundle\Entity\ParameterManager
 
 services:
     kdb_parameters:
@@ -9,3 +11,14 @@ services:
     
     kparams:
       alias: kdb_parameters
+      
+    kdb_parameters.manager:
+      class: %kdb_parameters.manager.class%
+      arguments: [@kdb_parameters.entity_manager, %kdb_parameters.class%]
+      
+    kdb_parameters.entity_manager:
+      factory_service: doctrine
+      factory_method: getEntityManager
+      class: Doctrine\ORM\EntityManager
+      
+      

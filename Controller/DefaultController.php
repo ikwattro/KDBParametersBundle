@@ -16,15 +16,25 @@ class DefaultController extends ContainerAware
     
     public function indexAction()
     {
+        
+        $manager = $this->container->get('kdb_parameters.manager');
+        echo count($manager->findParams());
+        
+        return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig');
+    }
+    
+    public function newAction()
+    {
         //Create the params form
         $class = $this->container->getParameter('kdb_parameters.class');
         $param = new $class;
         
+        
         $form = $this->container->get('form.factory')->create(new ParameterFormType($class), $param, array());
         
-        return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig',array(
+        return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:new.html.twig',array(
             'form' => $form->createView(),
-            'theme' => 'KDBParametersBundle::form.html.twig',
+            'theme' => $this->container->getParameter('kdb_parameters.form.theme'),
         ));
         
         //return $this->render('KDBParametersBundle:Default:index.html.twig', array('name' => $name, 'form' => $form->createView()));
