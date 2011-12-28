@@ -12,11 +12,6 @@ class ParametersManipulator
         $this->class = $class;
     }
     
-    public function toUpper($var)
-    {
-        return strtoupper($var);
-    }
-    
     
     public function getServiceName()
     {
