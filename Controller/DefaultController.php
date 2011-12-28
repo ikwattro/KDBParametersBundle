@@ -24,6 +24,7 @@ class DefaultController extends ContainerAware
         
         return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig',array(
             'form' => $form->createView(),
+            'theme' => 'KDBParametersBundle::form.html.twig',
         ));
         
         //return $this->render('KDBParametersBundle:Default:index.html.twig', array('name' => $name, 'form' => $form->createView()));

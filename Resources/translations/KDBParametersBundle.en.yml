@@ -1,3 +1,6 @@
 ## YAML Template.
 parameters:
   submit: Submit
+
+kdb_parameters_param_name: "Parameter name: "
+kdb_parameters_param_value: "Parameter value: "
