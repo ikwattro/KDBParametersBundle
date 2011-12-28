@@ -1,8 +1,8 @@
 parameters:
   kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
-  kdb_parameters.activate: no
+  kdb_parameters.activate: kdb_default
+  kdb_parameters.bag: []
 
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator.class%
-        argument: [%kdb_parameters.activate%]

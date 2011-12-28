@@ -19,6 +19,7 @@ class KDBParametersExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        
         $config = array();
     foreach ($configs as $subConfig) {
         $config = array_merge($config, $subConfig);
@@ -30,7 +31,10 @@ class KDBParametersExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         
+        if(isset($config['activate']))
+        {
         $container->setParameter('kdb_parameters.activate', $config['activate']);
+        }
     }
     
     public function getAlias()

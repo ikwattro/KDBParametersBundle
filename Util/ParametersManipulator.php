@@ -6,14 +6,28 @@ class ParametersManipulator
 {
     protected $_activate;
     
+    public $bag = array();
+    
     public function __construct($activate = 'default')
     {
         $this->activate = $activate;
     }
     
-    public function getToUpper($var)
+    public function toUpper($var)
     {
         return strtoupper($var);
+    }
+    
+    public function addParam($param, $value)
+    {
+        $this->bag[$param] = $value;
+                
+        return;
+    }
+    
+    public function getBag()
+    {
+        return $this->bag;
     }
 }
 ?>
