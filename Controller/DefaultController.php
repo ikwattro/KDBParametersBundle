@@ -14,29 +14,46 @@ use KDB\ParametersBundle\Form\ParameterFormType;
 class DefaultController extends ContainerAware
 {
     
+    /**
+     *
+     * List all parameters available
+     */
     public function indexAction()
-    {
-        
+    {        
         $manager = $this->container->get('kdb_parameters.manager');
         echo count($manager->findParams());
         
         return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig');
     }
     
+    /**
+     *
+     * Displays parameters creation form
+     */
     public function newAction()
-    {
-        //Create the params form
-        $class = $this->container->getParameter('kdb_parameters.class');
-        $param = new $class;
+    {        
+        $form = $this->container->get('kdb_parameters.form');
+        $formHandler = $this->container->get('kdb_parameters.form.handler');
         
+        $process = $formHandler->process();
         
-        $form = $this->container->get('form.factory')->create(new ParameterFormType($class), $param, array());
+        if ($process) {
+            $this->setFlash('kdb_param_success', 'param.flash.created');
+            $url = $this->container->get('router')->generate('kdb_parameters_index');
+            
+            return new RedirectResponse($url);
+        }
+        
         
         return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:new.html.twig',array(
             'form' => $form->createView(),
             'theme' => $this->container->getParameter('kdb_parameters.form.theme'),
         ));
         
-        //return $this->render('KDBParametersBundle:Default:index.html.twig', array('name' => $name, 'form' => $form->createView()));
+    }
+    
+    protected function setFlash($action, $value)
+    {
+        $this->container->get('session')->setFlash($action, $value);
     }
 }

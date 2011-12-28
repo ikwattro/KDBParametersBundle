@@ -3,6 +3,8 @@ parameters:
   kdb_parameters.activate: kdb_default
   kdb_parameters.form.theme: "KDBParametersBundle::form.html.twig"
   kdb_parameters.manager.class: KDB\ParametersBundle\Entity\ParameterManager
+  kdb_parameters.form.type: KDB\ParametersBundle\Form\ParameterFormType
+  kdb_parameters.form.name: kdb_parameters_param
 
 services:
     kdb_parameters:
@@ -20,5 +22,20 @@ services:
       factory_service: doctrine
       factory_method: getEntityManager
       class: Doctrine\ORM\EntityManager
+      
+    kdb_parameters.form:
+      factory_service: form.factory
+      factory_method: createNamed
+      class: Symfony\Component\Form\Form
+      arguments: [@kdb_parameters.form.xtype, %kdb_parameters.form.name%]
+    
+    kdb_parameters.form.xtype:
+      class: KDB\ParametersBundle\Form\ParameterFormType
+      arguments: [%kdb_parameters.class%]
+    
+    kdb_parameters.form.handler:
+      class: KDB\ParametersBundle\Form\ParameterFormHandler
+      scope: request
+      arguments: [@kdb_parameters.form, @request, @kdb_parameters.manager]
       
       

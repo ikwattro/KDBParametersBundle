@@ -1,7 +1,7 @@
-KDBParametersBundle_index:
+kdb_parameters_index:
     pattern:  /
     defaults: { _controller: KDBParametersBundle:Default:index }
 
-KDBParametersBundle_new:
+kdb_parameters_new:
   pattern: /new
   defaults: { _controller: KDBParametersBundle:Default:new }

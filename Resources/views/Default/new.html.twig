@@ -1,6 +1,6 @@
 {% form_theme form theme %}
 
-<form action="#" {{ form_enctype(form) }} method="POST" class="kdb_parameters_form">
+<form action="{{ path('kdb_parameters_new') }}" {{ form_enctype(form) }} method="POST" class="kdb_parameters_form">
     {{ form_widget(form) }}
     <div>
         <input type="submit" value="{{ 'parameters.submit'|trans({}, 'KDBParametersBundle') }}" />

@@ -4,6 +4,8 @@ namespace KDB\ParametersBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 
+
+
 class ParameterManager
 {
     protected $em;
@@ -25,6 +27,29 @@ class ParameterManager
     {
         return $this->repository->findAll();
     }
+    
+    /**
+     * @TODO: To be implemented in interface
+     * Creates a new Parameter instance
+     */
+    public function createParameter($name)
+    {
+        $class = $this->class;
+        
+        return new $class($name);
+        
+    }
+    
+    public function updateParameter(Parameter $parameter, $andFlush = true)
+    {
+        $this->em->persist($parameter);
+        
+        if($andFlush)
+        {
+            $this->em->flush();
+        }
+    }
+    
 }
 
 ?>
