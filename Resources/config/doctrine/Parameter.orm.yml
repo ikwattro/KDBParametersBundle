@@ -1,0 +1,12 @@
+## YAML Template.
+KDB\ParametersBundle\Entity\Parameter:
+  type: mappedSuperclass
+  
+  fields:
+    name:
+      type: string
+      length: 255
+      
+    value:
+      type: string
+      length: 50
