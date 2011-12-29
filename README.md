@@ -13,6 +13,7 @@ Actual state
 - parameterManager available as service
 - parameterForm and parameterFormHandler available as service
 - newAction in Controller
+- a begin of validation
 
 Todo
 ----
@@ -20,6 +21,9 @@ Todo
 - Split services conf files
 - Switch to ConfigurationClass
 - Controller actions and templates
+- Docblocks
+- Complete validation
+- Maybe go to XML config's
 - ...
 
 All feedbacks are welcome.

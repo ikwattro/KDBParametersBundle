@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the KDBParametersBundle package.
+ *
+ * (c) kwattro <https://github.com/kwattro/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace KDB\ParametersBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -10,6 +19,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use KDB\ParametersBundle\Form\ParameterFormType;
 
+/**
+ * @package KDBParametersBundle
+ * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ */
 
 class DefaultController extends ContainerAware
 {
