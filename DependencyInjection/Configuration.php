@@ -28,10 +28,26 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('kdb_parameters');
+        
+        /*
+         * At this time only ORM driver is supported, all contributions for
+         * other drivers support are welcome
+         */
+        $supportedDrivers = array('orm');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+        ->children()
+                ->scalarNode('db_driver')
+                    ->validate()
+                        ->ifNotInArray($supportedDrivers)
+                            ->thenInvalid('The %s driver is not supported')
+                    ->end()
+                    ->cannotBeOverwritten()
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end();
+                
+                
 
         return $treeBuilder;
     }
