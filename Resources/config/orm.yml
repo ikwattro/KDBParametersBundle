@@ -1,0 +1,11 @@
+parameters:
+  kdb_parameters.manager_class: KDB\ParametersBundle\Entity\ParameterManager
+services:
+  kdb_parameters.entity_manager:
+      factory_service: doctrine
+      factory_method: getEntityManager
+      class: Doctrine\ORM\EntityManager
+  
+  kdb_parameters.manager:
+      class: %kdb_parameters.manager_class%
+      arguments: [@kdb_parameters.entity_manager, %kdb_parameters.class%]

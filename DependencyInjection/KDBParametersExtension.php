@@ -36,6 +36,8 @@ class KDBParametersExtension extends Extension
         
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        
+        $loader->load(sprintf('%s.yml',$config['db_driver']));
     }
     
     public function getAlias()

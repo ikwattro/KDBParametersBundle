@@ -4,12 +4,12 @@ namespace KDB\ParametersBundle\Util;
 
 class ParametersManipulator
 {
-    protected $class;
+    private $parameterManager;
     
     
-    public function __construct($class)
+    public function __construct(ParameterManager $parameterManager)
     {
-        $this->class = $class;
+        $this->parameterManager = $parameterManager;
     }
     
     
