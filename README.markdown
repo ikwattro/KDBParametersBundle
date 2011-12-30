@@ -2,7 +2,7 @@ Kwattro Development Bundles: KDBParametersBundle
 ================================================
 
 This bundle lets you manage multiple parameters inside your application.
-The parameters are stored in database engines.
+The parameters are stored in database engines and in session.
 
 This bundle is momently in development stage.
 
@@ -14,8 +14,9 @@ Actual state
 - parameterForm and parameterFormHandler available as service
 - newAction in Controller
 - a begin of validation
+- Configuration made with ConfigurationClass
 
-Todo
+Todo's
 ----
 - Improve usage of interfaces
 - Split services conf files
@@ -24,9 +25,11 @@ Todo
 - Docblocks
 - Complete validation
 - Maybe go to XML config's
+- Tests
+- Doc
 - ...
 
-All feedbacks are welcome.
+All feedbacks and/or contributions are welcome.
 
 Enjoy!
 
