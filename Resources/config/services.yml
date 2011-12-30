@@ -5,14 +5,10 @@ parameters:
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator_class%
-        arguments: [%kdb_parameters.class%]
+        arguments: [@kdb_parameters.manager]
     
     kparams:
       alias: kdb_parameters
-      
-    kdb_parameters.manager:
-      class: %kdb_parameters.manager_class%
-      arguments: [@kdb_parameters.entity_manager, %kdb_parameters.class%]
       
     kdb_parameters.entity_manager:
       factory_service: doctrine

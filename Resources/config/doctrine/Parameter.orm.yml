@@ -6,6 +6,7 @@ KDB\ParametersBundle\Entity\Parameter:
     name:
       type: string
       length: 255
+      unique: true
       
     value:
       type: string

@@ -12,6 +12,7 @@
 namespace KDB\ParametersBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
+use KDB\ParametersBundle\Model\ParameterManager as BaseParameterManager;
 
 
 /**
@@ -19,7 +20,7 @@ use Doctrine\ORM\EntityManager;
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
  */
 
-class ParameterManager
+class ParameterManager extends BaseParameterManager
 {
     protected $em;
     protected $class;
@@ -45,8 +46,12 @@ class ParameterManager
      * @TODO: To be implemented in interface
      * Creates a new Parameter instance
      */
-    public function createParameter($name)
+    public function createParameter($name = null)
     {
+        if(null === $name)
+        {
+            $name = '';
+        }
         $class = $this->class;
         
         return new $class($name);
