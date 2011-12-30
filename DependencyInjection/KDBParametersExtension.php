@@ -29,32 +29,32 @@ class KDBParametersExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
         
-        $config = array();
-    foreach ($configs as $subConfig) {
-        $config = array_merge($config, $subConfig);
-    }
+        $this->bindParameters($container, 'kdb_parameters', $config);
         
-        #$configuration = new Configuration();
-        #$config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        
-        if(isset($config['activate']))
-        {
-        $container->setParameter('kdb_parameters.activate', $config['activate']);
-        }
-        
-        if(!isset($config['class']))
-        {
-            throw new \InvalidArgumentException('The "class" parameter in the "kdb_parameters" config must be configured');
-        }
-        $container->setParameter('kdb_parameters.class', $config['class']);
     }
     
     public function getAlias()
     {
         return 'kdb_parameters';
+    }
+    
+    public function bindParameters(ContainerBuilder $container, $name, $config)
+    {
+        if(is_array($config))
+        {
+            foreach($config as $key => $value)
+            {
+                $this->bindParameters($container, $name.'.'.$key, $value);
+            }
+        }
+        else
+        {
+            $container->setParameter($name, $config);
+        }
     }
 }

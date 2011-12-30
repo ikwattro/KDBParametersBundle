@@ -45,6 +45,12 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeOverwritten()
                     ->isRequired()
                     ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('manager_class')->defaultValue('KDB\ParametersBundle\Entity\ParameterManager')->end()
+                ->scalarNode('form_type')->defaultValue('KDB\ParametersBundle\Form\ParameterFormType')->end()
+                ->scalarNode('form_name')->defaultValue('kdb_parameters_param')->end()
+                ->scalarNode('manipulator_class')->defaultValue('KDB\ParametersBundle\Util\ParameterManipulator')->end()
                 ->end();
                 
                 

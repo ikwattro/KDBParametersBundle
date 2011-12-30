@@ -1,21 +1,21 @@
 parameters:
-  kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
+  #kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
   kdb_parameters.activate: kdb_default
   kdb_parameters.form.theme: "KDBParametersBundle::form.html.twig"
-  kdb_parameters.manager.class: KDB\ParametersBundle\Entity\ParameterManager
-  kdb_parameters.form.type: KDB\ParametersBundle\Form\ParameterFormType
-  kdb_parameters.form.name: kdb_parameters_param
+  #kdb_parameters.manager.class: KDB\ParametersBundle\Entity\ParameterManager
+  #kdb_parameters.form.type: KDB\ParametersBundle\Form\ParameterFormType
+  #kdb_parameters.form.name: kdb_parameters_param
 
 services:
     kdb_parameters:
-        class: %kdb_parameters.manipulator.class%
+        class: %kdb_parameters.manipulator_class%
         arguments: [%kdb_parameters.class%]
     
     kparams:
       alias: kdb_parameters
       
     kdb_parameters.manager:
-      class: %kdb_parameters.manager.class%
+      class: %kdb_parameters.manager_class%
       arguments: [@kdb_parameters.entity_manager, %kdb_parameters.class%]
       
     kdb_parameters.entity_manager:
@@ -27,7 +27,7 @@ services:
       factory_service: form.factory
       factory_method: createNamed
       class: Symfony\Component\Form\Form
-      arguments: [@kdb_parameters.form.xtype, %kdb_parameters.form.name%]
+      arguments: [@kdb_parameters.form.xtype, %kdb_parameters.form_name%]
     
     kdb_parameters.form.xtype:
       class: KDB\ParametersBundle\Form\ParameterFormType
