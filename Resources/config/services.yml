@@ -1,10 +1,6 @@
 parameters:
-  #kdb_parameters.manipulator.class: KDB\ParametersBundle\Util\ParametersManipulator
   kdb_parameters.activate: kdb_default
   kdb_parameters.form.theme: "KDBParametersBundle::form.html.twig"
-  #kdb_parameters.manager.class: KDB\ParametersBundle\Entity\ParameterManager
-  #kdb_parameters.form.type: KDB\ParametersBundle\Form\ParameterFormType
-  #kdb_parameters.form.name: kdb_parameters_param
 
 services:
     kdb_parameters:
