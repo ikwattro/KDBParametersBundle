@@ -11,3 +11,14 @@ KDB\ParametersBundle\Entity\Parameter:
     value:
       type: string
       length: 50
+    
+    active:
+      type: boolean
+    
+    activates_at:
+      type: datetime
+      nullable: true
+    
+    expires_at:
+      type: datetime
+      nullable: true

@@ -20,6 +20,9 @@ abstract class Parameter implements ParameterInterface
 {
     protected $name;
     protected $value;
+    protected $active;
+    protected $activates_at;
+    protected $expires_at;
     
     public function __construct()
     {
@@ -44,6 +47,36 @@ abstract class Parameter implements ParameterInterface
     public function setValue($aString)
     {
         $this->value = $aString;
+    }
+    
+    public function getActive()
+    {
+        return $this->active;
+    }
+    
+    public function getActivatesAt()
+    {
+        return $this->activates_at;
+    }
+    
+    public function getExpiresAt()
+    {
+        return $this->expires_at;
+    }
+    
+    public function setActive($boolean)
+    {
+        $this->active = $boolean;
+    }
+    
+    public function setExpiresAt(\DateTime $datetime = null)
+    {
+        $this->expires_at = $datetime;
+    }
+    
+    public function setActivatesAt(\DateTime $datetime = null)
+    {
+        $this->activates_at = $datetime;
     }
 }
 ?>

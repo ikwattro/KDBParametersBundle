@@ -9,3 +9,9 @@ KDB\ParametersBundle\Model\Parameter:
     
     value:
       - NotBlank: ~
+    
+    activates_at:
+      - DateTime: ~
+    
+    expires_at:
+      - DateTime: ~

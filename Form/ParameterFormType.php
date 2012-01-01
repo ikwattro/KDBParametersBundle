@@ -32,7 +32,10 @@ class ParameterFormType extends AbstractType
         {
             $builder
             ->add('name')
-            ->add('value');
+            ->add('value')
+            ->add('active')
+            ->add('activates_at')
+            ->add('expires_at');
         }
         
         public function getDefaultOptions(array $options)

@@ -3,3 +3,9 @@
     <label for="{{ id }}">{{ id|trans([], 'KDBParametersBundle') }}</label>
 {% endspaceless %}
 {% endblock field_label %}
+    
+{% block form_label %}
+{% spaceless %}
+    <label for="{{ id }}">{{ id|trans([], 'KDBParametersBundle') }}</label>
+{% endspaceless %}
+{% endblock form_label %}
