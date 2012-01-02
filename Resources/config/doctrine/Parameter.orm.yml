@@ -14,6 +14,7 @@ KDB\ParametersBundle\Entity\Parameter:
     
     active:
       type: boolean
+      nullable: true
     
     activates_at:
       type: datetime
