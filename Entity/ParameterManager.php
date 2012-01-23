@@ -58,6 +58,17 @@ class ParameterManager extends BaseParameterManager
         }
     }
     
+    public function findParameter(array $criteria)
+    {
+        return $this->repository->find($criteria);
+    }
+    
+    public function deleteParameter(ParameterInterface $parameter)
+    {
+        $this->em->remove($parameter);
+        $this->em->flush();
+    }
+    
     public function findParamByName($name)
     {
         return $this->repository->findParameterByName($name);
