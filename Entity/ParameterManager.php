@@ -71,7 +71,7 @@ class ParameterManager extends BaseParameterManager
     
     public function findParamByName($name)
     {
-        return $this->repository->findParameterByName($name);
+        return $this->repository->findOneByName($name);
     }
     
 }
