@@ -12,6 +12,7 @@
 namespace KDB\ParametersBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
+use KDB\ParametersBundle\Model\ParameterInterface;
 use KDB\ParametersBundle\Model\ParameterManager as BaseParameterManager;
 
 
@@ -37,28 +38,17 @@ class ParameterManager extends BaseParameterManager
         
     }
     
+    public function getClass()
+    {
+        return $this->class;
+    }
+    
     public function findParams()
     {
         return $this->repository->findAll();
     }
     
-    /**
-     * @TODO: To be implemented in interface
-     * Creates a new Parameter instance
-     */
-    public function createParameter($name = null)
-    {
-        if(null === $name)
-        {
-            $name = '';
-        }
-        $class = $this->class;
-        
-        return new $class($name);
-        
-    }
-    
-    public function updateParameter(Parameter $parameter, $andFlush = true)
+    public function updateParameter(ParameterInterface $parameter, $andFlush = true)
     {
         $this->em->persist($parameter);
         
@@ -66,6 +56,11 @@ class ParameterManager extends BaseParameterManager
         {
             $this->em->flush();
         }
+    }
+    
+    public function findParamByName($name)
+    {
+        return $this->repository->findParameterByName($name);
     }
     
 }
