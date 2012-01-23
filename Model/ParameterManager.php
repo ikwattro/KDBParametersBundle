@@ -16,16 +16,18 @@ namespace KDB\ParametersBundle\Model;
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
  */
 
-class ParameterManager
+class ParameterManager implements ParameterManagerInterface
 {
-    public function __construct()
+    public function createParameter()
     {
+        /**
+         * Returns a new Parameter instance
+         * 
+         * @return ParameterInterface
+         */
+        $class = $this->getClass();
         
-    }
-    
-    public function findParameters()
-    {
-        
+        return new $class;
     }
 }
 ?>
