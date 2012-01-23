@@ -26,12 +26,12 @@ class ParameterManipulator
     
     public function getParameter($name)
     {
-        return $this->parameterManager->getParameter($name);
+        return $this->parameterManager->findParamByName($name);
     }
     
     public function getParam($name, $default)
     {
-        $param = $this->findParamByName($name);
+        $param = $this->getParameter($name);
         if($param)
         {
             return $param->getValue();
