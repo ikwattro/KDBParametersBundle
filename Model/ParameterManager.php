@@ -16,7 +16,7 @@ namespace KDB\ParametersBundle\Model;
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
  */
 
-class ParameterManager implements ParameterManagerInterface
+abstract class ParameterManager implements ParameterManagerInterface
 {
     public function createParameter()
     {
