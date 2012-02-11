@@ -44,7 +44,7 @@ class ParameterManipulator
     
     public function getServiceName()
     {
-        return 'KDBParametersBundle provided to you by Kwattro';
+        return 'KDBParametersBundle';
     }
 }
 ?>
