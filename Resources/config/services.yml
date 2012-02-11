@@ -31,7 +31,7 @@ services:
       arguments: [@kdb_parameters.form, @request, @kdb_parameters.manager]
       
     kdb_parameters.twig.extension:
-      class: KDB\ParametersBundle\Twig\Extension\KDBExtension
+      class: KDB\ParametersBundle\Twig\Extension\KDBParameterExtension
       arguments: [@kparams]
       tags:
         - { name: twig.extension }

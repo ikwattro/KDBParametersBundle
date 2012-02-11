@@ -6,7 +6,7 @@ namespace KDB\ParametersBundle\Twig\Extension;
 use KDB\ParametersBundle\Util\ParameterManipulator;
 
 
-class KDBExtension extends \Twig_Extension
+class KDBParameterExtension extends \Twig_Extension
 {
     protected $manipulator;
 
