@@ -31,12 +31,11 @@ Todo's
 - Doc
 - ...
 
+Contributors
+------------
+Christophe Willemsen (@kwattro)
+Sergei Gerdel (@Sergic)
+
 All feedbacks and/or contributions are welcome.
 
 Enjoy!
-
-Contributors
-------------
-
-Christophe Willemsen (@kwattro)
-Sergei Gerdel (@Sergic)
