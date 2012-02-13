@@ -15,6 +15,8 @@ Actual state
 - newAction in Controller
 - a begin of validation
 - Configuration made with ConfigurationClass
+- default return option
+- Twig extension for fetching value
 
 Todo's
 ----
@@ -33,4 +35,8 @@ All feedbacks and/or contributions are welcome.
 
 Enjoy!
 
-Christophe Willemsen <willemsen.christophe@gmail.com>
+Contributors
+------------
+
+Christophe Willemsen (@kwattro)
+Sergei Gerdel (@Sergic)
