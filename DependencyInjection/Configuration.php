@@ -50,6 +50,8 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('form_type')->defaultValue('KDB\ParametersBundle\Form\ParameterFormType')->end()
                 ->scalarNode('form_name')->defaultValue('kdb_parameters_param')->end()
                 ->scalarNode('manipulator_class')->defaultValue('KDB\ParametersBundle\Util\ParameterManipulator')->end()
+                ->scalarNode('use_session')->defaultValue(true)->end()
+                ->scalarNode('session_manipulator')->defaultValue('KDB\ParametersBundle\Util\SessionManipulator')->end()
                 ->end();
                 
                 
