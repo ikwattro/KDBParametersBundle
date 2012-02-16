@@ -5,7 +5,7 @@ parameters:
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator_class%
-        arguments: [@kdb_parameters.manager]
+        arguments: [@kdb_parameters.manager, @service_container]
     
     kparams:
       alias: kdb_parameters
@@ -35,5 +35,13 @@ services:
       arguments: [@kparams]
       tags:
         - { name: twig.extension }
+    
+    kdb_parameters.session.manipulator:
+      class: %kdb_parameters.session_manipulator%
+      arguments: [@session]
+      scope: request
+    
+    kdb_session:
+      alias: kdb_parameters.session.manipulator
       
       
