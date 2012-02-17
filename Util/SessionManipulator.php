@@ -3,7 +3,7 @@
 namespace KDB\ParametersBundle\Util;
 
 use Symfony\Component\HttpFoundation\Session;
-//use KDB\ParametersBundle\Util\SessionBag;
+use KDB\ParametersBundle\Model\ParameterInterface;
 
 class SessionManipulator extends Session
 {
@@ -11,7 +11,12 @@ class SessionManipulator extends Session
     
     public function __construct(Session $session)
     {
-        
+        $this->session = $session;
+    }
+    
+    public function create(ParameterInterface $parameter)
+    {
+        $this->session->set($parameter->getName(), $parameter->getValue());
     }
     
     

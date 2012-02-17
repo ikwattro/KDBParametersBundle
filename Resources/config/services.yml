@@ -5,7 +5,7 @@ parameters:
 services:
     kdb_parameters:
         class: %kdb_parameters.manipulator_class%
-        arguments: [@kdb_parameters.manager, @service_container]
+        arguments: [@kdb_parameters.manager, @service_container, @session]
     
     kparams:
       alias: kdb_parameters

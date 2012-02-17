@@ -6,6 +6,7 @@ use KDB\ParametersBundle\Model\ParameterManager as ParameterManagerInterface;
 use KDB\ParametersBundle\Util\SessionManipulator;
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use KDB\ParametersBundle\Model\ParameterInterface;
 
 class ParameterManipulator
 {
@@ -15,11 +16,14 @@ class ParameterManipulator
     
     private $container;
     
+    private $use_session;
+    
     public function __construct(ParameterManagerInterface $parameterManager, ContainerInterface $container)
     {
         $this->parameterManager = $parameterManager;
         $this->container = $container;
         $this->sessionManipulator = $this->container->get('kdb_session');
+        $this->use_session = $this->container->getParameter('kdb_parameters.use_session');
     }
     
     public function create($name, $value)
@@ -29,11 +33,17 @@ class ParameterManipulator
         $parameter->setValue($value);
         $this->parameterManager->updateParameter($parameter);
         
-        //$this->sessionManipulator->set($name, $value);
-        //$this->sessionManipulator->save();
-        //print_r($this->sessionManipulator->all());
+        $this->addToSession($parameter);
         
         return $parameter;
+    }
+    
+    public function addToSession(ParameterInterface $parameter)
+    {
+        if($this->use_session)
+        {
+            $this->sessionManipulator->create($parameter);
+        }
     }
     
     public function getParameter($name)
