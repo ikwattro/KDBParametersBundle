@@ -1,6 +1,6 @@
 <?php
 
-namespace KDB\ParametersBundle\Util;
+namespace KDB\ParametersBundle\Manipulator;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use KDB\ParametersBundle\Model\ParameterInterface;

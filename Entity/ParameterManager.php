@@ -73,7 +73,16 @@ class ParameterManager extends BaseParameterManager
     {
         return $this->repository->findOneByName($name);
     }
-    
+
+    public function findActiveParameterByName($name)
+    {
+        return $this->repository->findOneBy(array('active' => 1, 'name' => $name));
+    }
+
+    public function findActiveParams()
+    {
+        return $this->repository->findBy(array('active' => 1));
+    }
 }
 
 ?>

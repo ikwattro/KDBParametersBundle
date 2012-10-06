@@ -3,20 +3,19 @@
 namespace KDB\ParametersBundle\Twig\Extension;
 
 
-use KDB\ParametersBundle\Util\ParameterManipulator;
+use KDB\ParametersBundle\Storage\ParametersStorageInterface;
 
 
 class KDBParameterExtension extends \Twig_Extension
 {
-    protected $manipulator;
+    /**
+     * @var ParametersStorageInterface
+     */
+    protected $storage;
 
-    protected $ressources = array();
-
-    protected $mediaManager;
-
-    public function __construct(ParameterManipulator $manipulator)
+    public function __construct(ParametersStorageInterface $storage)
     {
-        $this->manipulator = $manipulator;
+        $this->storage = $storage;
     }
 
     /**
@@ -43,15 +42,6 @@ class KDBParameterExtension extends \Twig_Extension
      */
     public function kparam($param, $default = null)
     {
-        $parameters = $this->getManipulator();
-        return $parameters->getParam($param, $default);
-    }
-
-    /**
-     * @return \KDB\ParametersBundle\Util\ParameterManipulator
-     */
-    public function getManipulator()
-    {
-        return $this->manipulator;
+        return $this->storage->get($param, $default);
     }
 }

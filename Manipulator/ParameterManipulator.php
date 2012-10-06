@@ -1,9 +1,8 @@
 <?php
 
-namespace KDB\ParametersBundle\Util;
+namespace KDB\ParametersBundle\Manipulator;
 
 use KDB\ParametersBundle\Model\ParameterManager as ParameterManagerInterface;
-use KDB\ParametersBundle\Util\SessionManipulator;
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use KDB\ParametersBundle\Model\ParameterInterface;
