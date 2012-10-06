@@ -39,12 +39,12 @@ class ParameterFormHandler
         {
             $parameter = $this->parameterManager->createParameter('');
         }
-        
+
         $this->form->setData($parameter);
         
-        if('POST' == $this->request->getMethod())
+        if($this->request->isMethod('POST'))
         {
-            $this->form->bindRequest($this->request);
+            $this->form->bind($this->request);
             if($this->form->isValid())
             {
                 $this->onSuccess($parameter);

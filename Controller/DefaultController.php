@@ -47,7 +47,7 @@ class DefaultController extends ContainerAware
     {        
         $form = $this->container->get('kdb_parameters.form');
         $formHandler = $this->container->get('kdb_parameters.form.handler');
-        
+
         $process = $formHandler->process();
         
         if ($process) {

@@ -19,7 +19,7 @@ services:
       factory_service: form.factory
       factory_method: createNamed
       class: Symfony\Component\Form\Form
-      arguments: [@kdb_parameters.form.xtype, %kdb_parameters.form_name%]
+      arguments: [%kdb_parameters.form_name%, @kdb_parameters.form.xtype]
     
     kdb_parameters.form.xtype:
       class: KDB\ParametersBundle\Form\ParameterFormType
@@ -39,7 +39,6 @@ services:
     kdb_parameters.session.manipulator:
       class: %kdb_parameters.session_manipulator%
       arguments: [@session]
-      scope: request
     
     kdb_session:
       alias: kdb_parameters.session.manipulator
