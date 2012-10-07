@@ -19,7 +19,11 @@ namespace KDB\ParametersBundle\Model;
 interface ParameterInterface
 {
     function getName();
-    
+
+    function setName($aString);
+
     function getValue();
+
+    function setValue($aString);
 }
 ?>

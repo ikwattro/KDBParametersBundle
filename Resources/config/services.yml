@@ -40,7 +40,7 @@ services:
 
     kdb_parameters.manipulator:
       class: %kdb_parameters.manipulator_class%
-      arguments: [@kdb_parameters.manager, @service_container, @session]
+      arguments: [@service_container]
 
     kdb_parameters.session.manipulator:
       class: %kdb_parameters.session_manipulator%

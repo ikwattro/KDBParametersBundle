@@ -12,12 +12,15 @@ namespace KDB\ParametersBundle\Form;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
-use KDB\ParametersBundle\Entity\ParameterManager;
+use KDB\ParametersBundle\Model\ParameterManagerInterface;
 use KDB\ParametersBundle\Model\ParameterInterface;
 
 /**
+ * Parameter form handler
+ *
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 class ParameterFormHandler
@@ -26,7 +29,7 @@ class ParameterFormHandler
     protected $request;
     protected $parameterManager;
     
-    public function __construct(Form $form, Request $request, ParameterManager $manager)
+    public function __construct(Form $form, Request $request, ParameterManagerInterface $manager)
     {
         $this->form = $form;
         $this->request = $request;
@@ -37,7 +40,7 @@ class ParameterFormHandler
     {
         if(null === $parameter)
         {
-            $parameter = $this->parameterManager->createParameter('');
+            $parameter = $this->parameterManager->createParameter();
         }
 
         $this->form->setData($parameter);
@@ -57,7 +60,7 @@ class ParameterFormHandler
     
     public function onSuccess(ParameterInterface $param)
     {
-        $this->parameterManager->updateParameter($param);
+        $this->parameterManager->persistParameter($param);
     }
 }
 ?>

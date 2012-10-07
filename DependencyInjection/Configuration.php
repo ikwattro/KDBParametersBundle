@@ -17,6 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 class Configuration implements ConfigurationInterface

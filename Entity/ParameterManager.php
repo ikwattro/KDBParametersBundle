@@ -12,63 +12,87 @@
 namespace KDB\ParametersBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use KDB\ParametersBundle\Model\ParameterInterface;
 use KDB\ParametersBundle\Model\ParameterManager as BaseParameterManager;
 
 
 /**
+ * Parameter manager
+ *
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 class ParameterManager extends BaseParameterManager
 {
+    /**
+     * Entity manager.
+     *
+     * @var EntityManager
+     */
     protected $em;
-    protected $class;
+
+    /**
+     * Entity repository.
+     *
+     * @var EntityRepository
+     */
     protected $repository;
-    
+
     public function __construct(EntityManager $em, $class)
     {
+        parent::__construct($class);
+
         $this->em = $em;
-        
-        $metadata = $em->getClassMetadata($class);
-        $this->class = $metadata->name;
-        
-        $this->repository = $em->getRepository($class);
-        
+        $this->repository = $this->em->getRepository($this->getClass());
     }
-    
-    public function getClass()
+
+    /**
+     * Returns a new Parameter instance
+     *
+     * @return ParameterInterface
+     */
+    public function createParameter()
     {
-        return $this->class;
+
+        $class = $this->getClass();
+
+        return new $class;
     }
-    
-    public function findParams()
+
+    /**
+     * {@inheritdoc}
+     */
+    public function persistParameter(ParameterInterface $post)
     {
-        return $this->repository->findAll();
+        $this->em->persist($post);
+        $this->em->flush();
     }
-    
-    public function updateParameter(ParameterInterface $parameter, $andFlush = true)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeParameter(ParameterInterface $post)
     {
-        $this->em->persist($parameter);
-        
-        if($andFlush)
-        {
-            $this->em->flush();
-        }
+        $this->em->remove($post);
+        $this->em->flush();
     }
-    
+
+    /**
+     * {@inheritdoc}
+     */
     public function findParameter(array $criteria)
     {
         return $this->repository->find($criteria);
     }
-    
-    public function deleteParameter(ParameterInterface $parameter)
+
+    public function findParams()
     {
-        $this->em->remove($parameter);
-        $this->em->flush();
+        return $this->repository->findAll();
     }
-    
+
     public function findParamByName($name)
     {
         return $this->repository->findOneByName($name);

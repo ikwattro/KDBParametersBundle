@@ -1,16 +1,24 @@
 <?php
 
-    /*
-     * This file is part of the KDBParametersBundle.
-     *
-     * (c) Sergey Gerdel
-     *
-     * For the full copyright and license information, please view the LICENSE
-     * file that was distributed with this source code.
-     */
+/*
+ * This file is part of the KDBParametersBundle package.
+ *
+ * (c) kwattro <https://github.com/kwattro/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace KDB\ParametersBundle\Storage;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Parameter storage
+ *
+ * @package KDBParametersBundle
+ * @author Sergey Gerdel <skif16@ukr.net/>
+ */
 
 class ParametersStorage implements ParametersStorageInterface
 {
@@ -48,6 +56,9 @@ class ParametersStorage implements ParametersStorageInterface
 
     public function getAll()
     {
+        if (!is_array($this->parameters)){
+            $this->getParameters();
+        }
         return $this->parameters;
     }
 
