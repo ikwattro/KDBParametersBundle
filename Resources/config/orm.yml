@@ -1,5 +1,6 @@
 parameters:
   kdb_parameters.manager_class: KDB\ParametersBundle\Entity\ParameterManager
+
 services:
   kdb_parameters.entity_manager:
       factory_service: doctrine

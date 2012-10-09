@@ -20,6 +20,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use KDB\ParametersBundle\Form\ParameterFormType;
 
 /**
+ * Controller for parameters manage
+ *
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
  */
@@ -34,9 +36,8 @@ class DefaultController extends ContainerAware
     public function indexAction()
     {        
         $manager = $this->container->get('kdb_parameters.manager');
-        echo count($manager->findParams());
-        
-        return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig');
+
+        return $this->container->get('templating')->renderResponse('KDBParametersBundle:Default:index.html.twig', array('count' => count($manager->findParams())));
     }
     
     /**
@@ -47,7 +48,7 @@ class DefaultController extends ContainerAware
     {        
         $form = $this->container->get('kdb_parameters.form');
         $formHandler = $this->container->get('kdb_parameters.form.handler');
-        
+
         $process = $formHandler->process();
         
         if ($process) {

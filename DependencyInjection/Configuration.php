@@ -17,6 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 class Configuration implements ConfigurationInterface
@@ -49,9 +50,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('form_type')->defaultValue('KDB\ParametersBundle\Form\ParameterFormType')->end()
                 ->scalarNode('form_name')->defaultValue('kdb_parameters_param')->end()
-                ->scalarNode('manipulator_class')->defaultValue('KDB\ParametersBundle\Util\ParameterManipulator')->end()
+                ->scalarNode('auto_load')->defaultValue(true)->end()
+                ->scalarNode('manipulator_class')->defaultValue('KDB\ParametersBundle\Manipulator\ParameterManipulator')->end()
                 ->scalarNode('use_session')->defaultValue(true)->end()
-                ->scalarNode('session_manipulator')->defaultValue('KDB\ParametersBundle\Util\SessionManipulator')->end()
+                ->scalarNode('session_manipulator')->defaultValue('KDB\ParametersBundle\Manipulator\SessionManipulator')->end()
                 ->end();
                 
                 

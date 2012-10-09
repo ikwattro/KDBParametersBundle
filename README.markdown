@@ -35,7 +35,7 @@ Contributors
 ------------
 Christophe Willemsen (@kwattro)
 
-Sergei Gerdel (@Sergic)
+Sergey Gerdel (@Sergic)
 
 All feedbacks and/or contributions are welcome.
 

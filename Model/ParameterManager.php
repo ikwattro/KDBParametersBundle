@@ -12,22 +12,41 @@
 namespace KDB\ParametersBundle\Model;
 
 /**
+ * Abstract model for parameter manager
+ *
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 abstract class ParameterManager implements ParameterManagerInterface
 {
-    public function createParameter()
+    /**
+     * Parameter class.
+     *
+     * @var string
+     */
+    protected $class;
+
+    /**
+     * Constructor.
+     *
+     * @var string $class
+     */
+    public function __construct($class)
     {
-        /**
-         * Returns a new Parameter instance
-         * 
-         * @return ParameterInterface
-         */
-        $class = $this->getClass();
-        
-        return new $class;
+        $this->class = $class;
     }
+
+    /**
+     * Returns FQCN of parameter.
+     *
+     * @return string
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
 }
 ?>

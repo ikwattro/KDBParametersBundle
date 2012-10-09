@@ -1,47 +1,56 @@
 parameters:
   kdb_parameters.activate: kdb_default
   kdb_parameters.form.theme: "KDBParametersBundle::form.html.twig"
+  kdb_parameters.listener.autoload.class: KDB\ParametersBundle\Listener\AutoLoadListener
+  kdb_parameters.storage.class: KDB\ParametersBundle\Storage\ParametersStorage
 
 services:
     kdb_parameters:
-        class: %kdb_parameters.manipulator_class%
-        arguments: [@kdb_parameters.manager, @service_container, @session]
-    
+        class: %kdb_parameters.storage.class%
+        arguments: [@service_container]
+
     kparams:
       alias: kdb_parameters
-      
+
     kdb_parameters.entity_manager:
       factory_service: doctrine
       factory_method: getEntityManager
       class: Doctrine\ORM\EntityManager
-      
+
     kdb_parameters.form:
       factory_service: form.factory
       factory_method: createNamed
       class: Symfony\Component\Form\Form
-      arguments: [@kdb_parameters.form.xtype, %kdb_parameters.form_name%]
-    
+      arguments: [%kdb_parameters.form_name%, @kdb_parameters.form.xtype]
+
     kdb_parameters.form.xtype:
       class: KDB\ParametersBundle\Form\ParameterFormType
       arguments: [%kdb_parameters.class%]
-    
+
     kdb_parameters.form.handler:
       class: KDB\ParametersBundle\Form\ParameterFormHandler
       scope: request
       arguments: [@kdb_parameters.form, @request, @kdb_parameters.manager]
-      
+
     kdb_parameters.twig.extension:
       class: KDB\ParametersBundle\Twig\Extension\KDBParameterExtension
       arguments: [@kparams]
       tags:
         - { name: twig.extension }
-    
+
+    kdb_parameters.manipulator:
+      class: %kdb_parameters.manipulator_class%
+      arguments: [@service_container]
+
     kdb_parameters.session.manipulator:
       class: %kdb_parameters.session_manipulator%
       arguments: [@session]
-      scope: request
-    
+
     kdb_session:
       alias: kdb_parameters.session.manipulator
-      
-      
+
+    kdb_parameters.listener.autoload:
+        class: %kdb_parameters.listener.autoload.class%
+        arguments: [@kdb_parameters, %kdb_parameters.auto_load%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }

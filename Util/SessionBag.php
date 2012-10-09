@@ -4,7 +4,7 @@ namespace KDB\ParametersBundle\Util;
 
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 
-class SessionBag extends SessionBagInterface
+class SessionBag implements SessionBagInterface
 {
     private $name = 'parameters';
 

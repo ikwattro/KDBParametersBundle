@@ -12,41 +12,68 @@
 namespace KDB\ParametersBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * Form type for parameter
+ *
  * @package KDBParametersBundle
  * @author Christophe Willemsen <willemsen.christophe@gmail.com/>
+ * @author Sergey Gerdel <skif16@ukr.net/>
  */
 
 class ParameterFormType extends AbstractType
 {
-    private $class;
-    
-    public function __construct($class)
+    /**
+     * Data class.
+     *
+     * @var string
+     */
+    protected $dataClass;
+
+    /**
+     * Constructor.
+     *
+     * @param string $dataClass
+     */
+    public function __construct($dataClass)
     {
-        $this->class = $class;
+        $this->dataClass = $dataClass;
     }
-        
-        public function buildForm(FormBuilder $builder, array $options)
-        {
-            $builder
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('name')
             ->add('value')
             ->add('active')
-            ->add('activates_at')
-            ->add('expires_at');
-        }
-        
-        public function getDefaultOptions(array $options)
-        {
-            return array('data_class' => $this->class);
-        }
-        
-        public function getName()
-        {
-            return 'kdb_parameters_param';
-        }
+            ->add('activates_at', 'datetime')
+            ->add('expires_at', 'datetime');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver
+            ->setDefaults(array(
+                'data_class' => $this->dataClass,
+            ))
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'kdb_parameters_param';
+    }
 }
 
 ?>
